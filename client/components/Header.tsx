@@ -20,12 +20,12 @@ export default function Header() {
   };
 
   return (
-    <header className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
-      isScrolled ? "shadow-lg" : ""
-    }`}>
-      <div className={`max-w-[1440px] mx-auto px-4 sm:px-8 lg:px-20 transition-all duration-300 ${
-        isScrolled ? "glassmorphism" : "bg-portfolio-bg"
-      }`}>
+    <header
+      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
+        isScrolled ? "glassmorphism shadow-lg" : "bg-portfolio-bg"
+      }`}
+    >
+      <div className="max-w-[1280px] mx-4 max-w-[1440px] sm:mx-8 lg:mx-20">
         <div className="flex justify-between items-center h-[100px] sm:h-[138px]">
           <h1
             className="text-[#1E2929] font-poppins text-3xl sm:text-[50px] font-bold cursor-pointer"
