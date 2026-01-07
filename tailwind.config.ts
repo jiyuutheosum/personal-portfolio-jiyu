@@ -13,6 +13,10 @@ export default {
       },
     },
     extend: {
+      fontFamily: {
+        poppins: ['Poppins', '-apple-system', 'Roboto', 'Helvetica', 'sans-serif'],
+        inter: ['Inter', '-apple-system', 'Roboto', 'Helvetica', 'sans-serif'],
+      },
       colors: {
         border: "hsl(var(--border))",
         input: "hsl(var(--input))",
@@ -56,6 +60,11 @@ export default {
           "accent-foreground": "hsl(var(--sidebar-accent-foreground))",
           border: "hsl(var(--sidebar-border))",
           ring: "hsl(var(--sidebar-ring))",
+        },
+        portfolio: {
+          bg: "hsl(var(--portfolio-bg))",
+          dark: "hsl(var(--portfolio-dark))",
+          darker: "hsl(var(--portfolio-darker))",
         },
       },
       borderRadius: {
