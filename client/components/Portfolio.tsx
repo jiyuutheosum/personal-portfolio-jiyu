@@ -30,7 +30,7 @@ export default function Portfolio() {
       title: "QuickEase 2.0",
       description:
         "Creative design work showcasing modern UI/UX principles with focus on user experience and visual hierarchy.",
-      tech: ["Figma", "Adobe XD"],
+      tech: ["Figma", "Website"],
       image:
         "https://images.unsplash.com/photo-1561070791-2526d30994b5?w=800&h=400&fit=crop",
     },
@@ -38,7 +38,7 @@ export default function Portfolio() {
       title: "Larga.cgy",
       description:
         "Brand identity and visual design project with comprehensive style guide and component library.",
-      tech: ["Illustrator", "Photoshop"],
+      tech: ["Figma", "Mobile"],
       image:
         "https://images.unsplash.com/photo-1626785774573-4b799315345d?w=800&h=400&fit=crop",
     },
