@@ -61,7 +61,7 @@ export default function Portfolio() {
           Portfolio
         </h2>
 
-        <<div className="relative w-full max-w-[845px] mx-auto mb-12">
+        <div className="relative w-full max-w-[845px] mx-auto mb-12">
           <div className="h-[65px] rounded-[25px] bg-white flex items-center relative px-[20px]">
             <div
               className={`absolute h-[45px] w-[390px] rounded-[20px] bg-[#344647] transition-all duration-500 ease-in-out ${activeTab === "development" ? "left-[20px]" : "left-[435px]"
