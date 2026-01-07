@@ -42,7 +42,7 @@ export default function About() {
             </div>
             <button
               onClick={handleNextImage}
-              className="absolute -bottom-12 left-1/2 -translate-x-1/2 w-[50px] h-[25px] rounded-[20px] bg-black/85 flex items-center justify-center hover:scale-110 hover:bg-black transition-all duration-300 group"
+              className="absolute -bottom-12 right-1 -translate-x-1/2 w-[50px] h-[25px] rounded-[20px] bg-black/85 flex items-center justify-center hover:scale-110 hover:bg-black transition-all duration-300 group"
               aria-label="Next image"
             >
               <svg
