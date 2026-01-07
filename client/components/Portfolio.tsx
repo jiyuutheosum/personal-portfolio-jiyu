@@ -27,7 +27,7 @@ export default function Portfolio() {
 
   const designProjects = [
     {
-      title: "Design Project 1",
+      title: "QuickEase 2.0",
       description:
         "Creative design work showcasing modern UI/UX principles with focus on user experience and visual hierarchy.",
       tech: ["Figma", "Adobe XD"],
@@ -35,7 +35,7 @@ export default function Portfolio() {
         "https://images.unsplash.com/photo-1561070791-2526d30994b5?w=800&h=400&fit=crop",
     },
     {
-      title: "Design Project 2",
+      title: "Larga.cgy",
       description:
         "Brand identity and visual design project with comprehensive style guide and component library.",
       tech: ["Illustrator", "Photoshop"],
