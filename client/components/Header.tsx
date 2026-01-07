@@ -31,7 +31,7 @@ export default function Header() {
             className="text-[#1E2929] font-poppins text-3xl sm:text-[50px] font-bold cursor-pointer"
             onClick={() => scrollToSection("home")}
           >
-            Ji.ui
+            J.ui
           </h1>
           <nav className="flex gap-6 sm:gap-[45px] items-center">
             {["Home", "About", "Skills", "Portfolio", "Contact"].map((item) => (
