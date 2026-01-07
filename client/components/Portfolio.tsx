@@ -65,7 +65,7 @@ export default function Portfolio() {
           <div className="h-[65px] rounded-[25px] bg-white flex items-center justify-center relative">
             <div
               className={`absolute h-[45px] w-[390px] rounded-[20px] bg-[#344647] transition-all duration-500 ease-in-out ${
-                activeTab === "development" ? "left-[10px]" : "left-[435px]"
+                activeTab === "development" ? "left-[20px]" : "left-[435px]"
               }`}
             ></div>
             <button
