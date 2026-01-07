@@ -11,7 +11,7 @@ export default function Portfolio() {
       title: "Moongle Buddy",
       description:
         "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",
-      tech: ["Firebase", "React"],
+      tech: ["Firebase", "React", "Mobile"],
       image:
         "https://images.unsplash.com/photo-1498050108023-c5249f4df085?w=800&h=400&fit=crop",
     },
