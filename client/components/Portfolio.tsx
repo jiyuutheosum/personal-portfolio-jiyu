@@ -61,35 +61,34 @@ export default function Portfolio() {
           Portfolio
         </h2>
 
-        <div className="relative w-full max-w-[845px] mx-auto mb-12">
-          <div className="h-[65px] rounded-[25px] bg-white flex items-center justify-center relative">
+        <<div className="relative w-full max-w-[845px] mx-auto mb-12">
+          <div className="h-[65px] rounded-[25px] bg-white flex items-center relative px-[20px]">
             <div
-              className={`absolute h-[45px] w-[390px] rounded-[20px] bg-[#344647] transition-all duration-500 ease-in-out ${
-                activeTab === "development" ? "left-[20px]" : "left-[435px]"
-              }`}
+              className={`absolute h-[45px] w-[390px] rounded-[20px] bg-[#344647] transition-all duration-500 ease-in-out ${activeTab === "development" ? "left-[20px]" : "left-[435px]"
+                }`}
             ></div>
+
             <button
               onClick={() => setActiveTab("development")}
-              className={`relative z-10 px-12 py-2 font-poppins text-[25px] transition-colors duration-300 ${
-                activeTab === "development"
+              className={`relative z-10 w-[390px] h-[45px] flex items-center justify-center font-poppins text-[25px] transition-colors duration-300 ${activeTab === "development"
                   ? "text-white font-normal"
                   : "text-[#344647] font-normal"
-              }`}
+                }`}
             >
               Development
             </button>
+
             <button
               onClick={() => setActiveTab("design")}
-              className={`relative z-10 px-12[12rem] py-2 font-poppins text-[25px] transition-colors duration-300 ${
-                activeTab === "design"
+              className={`relative z-10 w-[390px] h-[45px] flex items-center justify-center font-poppins text-[25px] transition-colors duration-300 ${activeTab === "design"
                   ? "text-white font-normal"
                   : "text-[#344647] font-normal"
-              }`}
+                }`}
             >
               Design
             </button>
           </div>
-        </div>
+      </div>
 
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 mb-8">
           {projects
