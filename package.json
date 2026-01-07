@@ -1,20 +1,15 @@
 {
   "name": "personal-portfolio-jiyu",
-  "homepage": "https://jiyuutheosum.github.io/personal-portfolio-jiyu",
   "private": true,
   "version": "1.0.0",
   "type": "module",
   "scripts": {
     "dev": "vite",
-    "build": "npm run build:client && npm run build:server",
-    "build:client": "vite build",
-    "build:server": "vite build --config vite.config.server.ts",
-    "start": "node dist/server/node-build.mjs",
+    "build": "vite build",
+    "preview": "vite preview",
     "test": "vitest --run",
     "format.fix": "prettier --write .",
-    "typecheck": "tsc",
-    "predeploy": "npm run build",
-    "deploy": "gh-pages -d dist"
+    "typecheck": "tsc"
   },
   "dependencies": {
     "dotenv": "^17.2.1",
