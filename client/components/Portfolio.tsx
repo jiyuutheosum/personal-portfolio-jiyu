@@ -18,7 +18,7 @@ export default function Portfolio() {
     {
       title: "QuickMemo",
       description:
-        "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",
+        "A simple web-based notepad designed for capturing, organizing, and managing daily notes with ease. It allows users to quickly write down ideas, reminders, and important thoughts in a clean and distraction-free interface, making everyday note-taking efficient and effortless.",
       tech: ["HTML", "CSS"],
       image:
         "https://images.unsplash.com/photo-1484480974693-6ca0a78fb36b?w=800&h=400&fit=crop",
