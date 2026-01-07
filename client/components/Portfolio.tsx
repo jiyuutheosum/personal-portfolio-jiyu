@@ -27,7 +27,7 @@ export default function Portfolio() {
 
   const designProjects = [
     {
-      title: "QuickEase 2.0",
+      title: "Design Project 1",
       description:
         "Creative design work showcasing modern UI/UX principles with focus on user experience and visual hierarchy.",
       tech: ["Figma", "Adobe XD"],
@@ -35,7 +35,7 @@ export default function Portfolio() {
         "https://images.unsplash.com/photo-1561070791-2526d30994b5?w=800&h=400&fit=crop",
     },
     {
-      title: "Larga.cgy",
+      title: "Design Project 2",
       description:
         "Brand identity and visual design project with comprehensive style guide and component library.",
       tech: ["Illustrator", "Photoshop"],
@@ -62,34 +62,33 @@ export default function Portfolio() {
         </h2>
 
         <div className="relative w-full max-w-[845px] mx-auto mb-12">
-          <div className="h-[65px] rounded-[25px] bg-white flex items-center justify-center relative">
+          <div className="h-[65px] rounded-[25px] bg-white flex items-center relative px-[20px]">
             <div
-              className={`absolute h-[45px] w-[390px] rounded-[20px] bg-[#344647] transition-all duration-500 ease-in-out ${
-                activeTab === "development" ? "left-[20px]" : "left-[435px]"
-              }`}
+              className={`absolute h-[45px] w-[390px] rounded-[20px] bg-[#344647] transition-all duration-500 ease-in-out ${activeTab === "development" ? "left-[20px]" : "left-[435px]"
+                }`}
             ></div>
+
             <button
               onClick={() => setActiveTab("development")}
-              className={`relative z-10 px-12 py-2 font-poppins text-[25px] transition-colors duration-300 ${
-                activeTab === "development"
+              className={`relative z-10 w-[390px] h-[45px] flex items-center justify-center font-poppins text-[25px] transition-colors duration-300 ${activeTab === "development"
                   ? "text-white font-normal"
                   : "text-[#344647] font-normal"
-              }`}
+                }`}
             >
               Development
             </button>
+
             <button
               onClick={() => setActiveTab("design")}
-              className={`relative z-10 px-12[12rem] py-2 font-poppins text-[25px] transition-colors duration-300 ${
-                activeTab === "design"
+              className={`relative z-10 w-[390px] h-[45px] flex items-center justify-center font-poppins text-[25px] transition-colors duration-300 ${activeTab === "design"
                   ? "text-white font-normal"
                   : "text-[#344647] font-normal"
-              }`}
+                }`}
             >
               Design
             </button>
           </div>
-        </div>
+      </div>
 
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 mb-8">
           {projects
