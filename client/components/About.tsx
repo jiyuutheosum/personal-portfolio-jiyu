@@ -32,9 +32,10 @@ export default function About() {
                   className={`absolute w-full h-full rounded-[20px] border border-black object-cover transition-all duration-500 ${
                     index === currentImage
                       ? "opacity-100 scale-100 z-10"
-                      : index === (currentImage - 1 + images.length) % images.length
-                      ? "opacity-50 scale-95 -translate-x-6 translate-y-0 z-0"
-                      : "opacity-0 scale-90"
+                      : index ===
+                          (currentImage - 1 + images.length) % images.length
+                        ? "opacity-50 scale-95 -translate-x-6 translate-y-0 z-0"
+                        : "opacity-0 scale-90"
                   }`}
                 />
               ))}
@@ -61,9 +62,18 @@ export default function About() {
           </div>
           <div className="flex-1 mt-16 lg:mt-0">
             <p className="text-portfolio-darker font-poppins text-lg sm:text-[20px] font-light leading-relaxed">
-              Hi I'm Jalanie M. Baraocor, a 4th-year BSIT student at USTP-CDO Campus with a passion for creating accessible, user-centered digital experiences, while continuously learning and growing as a future full-stack developer.
-              <br /><br />
-              With a strong focus on UI/UX design, I aim to craft interfaces that are both functional and visually engaging. I am dedicated to developing user-centric solutions that enhance usability and accessibility, combining aesthetic appeal with strategic functionality to deliver intuitive and effective digital experiences.
+              Hi I'm Jalanie M. Baraocor, a 4th-year BSIT student at USTP-CDO
+              Campus with a passion for creating accessible, user-centered
+              digital experiences, while continuously learning and growing as a
+              future full-stack developer.
+              <br />
+              <br />
+              With a strong focus on UI/UX design, I aim to craft interfaces
+              that are both functional and visually engaging. I am dedicated to
+              developing user-centric solutions that enhance usability and
+              accessibility, combining aesthetic appeal with strategic
+              functionality to deliver intuitive and effective digital
+              experiences.
             </p>
           </div>
         </div>

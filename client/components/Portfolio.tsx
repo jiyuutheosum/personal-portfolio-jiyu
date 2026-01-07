@@ -1,40 +1,51 @@
 import { useState } from "react";
 
 export default function Portfolio() {
-  const [activeTab, setActiveTab] = useState<"development" | "design">("development");
+  const [activeTab, setActiveTab] = useState<"development" | "design">(
+    "development",
+  );
   const [currentSlide, setCurrentSlide] = useState(0);
 
   const developmentProjects = [
     {
       title: "Moongle Buddy",
-      description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",
+      description:
+        "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",
       tech: ["Firebase", "React"],
-      image: "https://images.unsplash.com/photo-1498050108023-c5249f4df085?w=800&h=400&fit=crop",
+      image:
+        "https://images.unsplash.com/photo-1498050108023-c5249f4df085?w=800&h=400&fit=crop",
     },
     {
       title: "QuickMemo",
-      description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",
+      description:
+        "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",
       tech: ["HTML", "CSS"],
-      image: "https://images.unsplash.com/photo-1484480974693-6ca0a78fb36b?w=800&h=400&fit=crop",
+      image:
+        "https://images.unsplash.com/photo-1484480974693-6ca0a78fb36b?w=800&h=400&fit=crop",
     },
   ];
 
   const designProjects = [
     {
       title: "Design Project 1",
-      description: "Creative design work showcasing modern UI/UX principles with focus on user experience and visual hierarchy.",
+      description:
+        "Creative design work showcasing modern UI/UX principles with focus on user experience and visual hierarchy.",
       tech: ["Figma", "Adobe XD"],
-      image: "https://images.unsplash.com/photo-1561070791-2526d30994b5?w=800&h=400&fit=crop",
+      image:
+        "https://images.unsplash.com/photo-1561070791-2526d30994b5?w=800&h=400&fit=crop",
     },
     {
       title: "Design Project 2",
-      description: "Brand identity and visual design project with comprehensive style guide and component library.",
+      description:
+        "Brand identity and visual design project with comprehensive style guide and component library.",
       tech: ["Illustrator", "Photoshop"],
-      image: "https://images.unsplash.com/photo-1626785774573-4b799315345d?w=800&h=400&fit=crop",
+      image:
+        "https://images.unsplash.com/photo-1626785774573-4b799315345d?w=800&h=400&fit=crop",
     },
   ];
 
-  const projects = activeTab === "development" ? developmentProjects : designProjects;
+  const projects =
+    activeTab === "development" ? developmentProjects : designProjects;
 
   const handleNext = () => {
     setCurrentSlide((prev) => (prev + 2 >= projects.length ? 0 : prev + 2));
@@ -60,7 +71,9 @@ export default function Portfolio() {
             <button
               onClick={() => setActiveTab("development")}
               className={`relative z-10 px-12 py-2 font-poppins text-[25px] transition-colors duration-300 ${
-                activeTab === "development" ? "text-white font-normal" : "text-[#344647] font-normal"
+                activeTab === "development"
+                  ? "text-white font-normal"
+                  : "text-[#344647] font-normal"
               }`}
             >
               Development
@@ -68,7 +81,9 @@ export default function Portfolio() {
             <button
               onClick={() => setActiveTab("design")}
               className={`relative z-10 px-12 py-2 font-poppins text-[25px] transition-colors duration-300 ${
-                activeTab === "design" ? "text-white font-normal" : "text-[#344647] font-normal"
+                activeTab === "design"
+                  ? "text-white font-normal"
+                  : "text-[#344647] font-normal"
               }`}
             >
               Design
@@ -77,39 +92,44 @@ export default function Portfolio() {
         </div>
 
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 mb-8">
-          {projects.slice(currentSlide, currentSlide + 2).map((project, index) => (
-            <div
-              key={index}
-              className="bg-white rounded-[20px] overflow-hidden shadow-lg transform transition-all duration-500 opacity-0 animate-fadeIn"
-              style={{ animationDelay: `${index * 100}ms`, animationFillMode: "forwards" }}
-            >
-              <div className="h-[188px] bg-[#D9D9D9] overflow-hidden">
-                <img
-                  src={project.image}
-                  alt={project.title}
-                  className="w-full h-full object-cover hover:scale-110 transition-transform duration-500"
-                />
-              </div>
-              <div className="p-4">
-                <h3 className="text-black font-inter text-[15px] font-extrabold mb-2">
-                  {project.title}
-                </h3>
-                <p className="text-black font-inter text-[12px] font-normal mb-4 line-clamp-4">
-                  {project.description}
-                </p>
-                <div className="flex gap-2">
-                  {project.tech.map((tech) => (
-                    <span
-                      key={tech}
-                      className="px-[9px] py-[4px] rounded-[5px] bg-[#1E2929] text-white font-inter text-[10px] font-normal"
-                    >
-                      {tech}
-                    </span>
-                  ))}
+          {projects
+            .slice(currentSlide, currentSlide + 2)
+            .map((project, index) => (
+              <div
+                key={index}
+                className="bg-white rounded-[20px] overflow-hidden shadow-lg transform transition-all duration-500 opacity-0 animate-fadeIn"
+                style={{
+                  animationDelay: `${index * 100}ms`,
+                  animationFillMode: "forwards",
+                }}
+              >
+                <div className="h-[188px] bg-[#D9D9D9] overflow-hidden">
+                  <img
+                    src={project.image}
+                    alt={project.title}
+                    className="w-full h-full object-cover hover:scale-110 transition-transform duration-500"
+                  />
+                </div>
+                <div className="p-4">
+                  <h3 className="text-black font-inter text-[15px] font-extrabold mb-2">
+                    {project.title}
+                  </h3>
+                  <p className="text-black font-inter text-[12px] font-normal mb-4 line-clamp-4">
+                    {project.description}
+                  </p>
+                  <div className="flex gap-2">
+                    {project.tech.map((tech) => (
+                      <span
+                        key={tech}
+                        className="px-[9px] py-[4px] rounded-[5px] bg-[#1E2929] text-white font-inter text-[10px] font-normal"
+                      >
+                        {tech}
+                      </span>
+                    ))}
+                  </div>
                 </div>
               </div>
-            </div>
-          ))}
+            ))}
         </div>
 
         <div className="flex justify-center items-center gap-4">

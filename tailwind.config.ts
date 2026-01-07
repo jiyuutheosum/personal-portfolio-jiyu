@@ -14,8 +14,14 @@ export default {
     },
     extend: {
       fontFamily: {
-        poppins: ['Poppins', '-apple-system', 'Roboto', 'Helvetica', 'sans-serif'],
-        inter: ['Inter', '-apple-system', 'Roboto', 'Helvetica', 'sans-serif'],
+        poppins: [
+          "Poppins",
+          "-apple-system",
+          "Roboto",
+          "Helvetica",
+          "sans-serif",
+        ],
+        inter: ["Inter", "-apple-system", "Roboto", "Helvetica", "sans-serif"],
       },
       colors: {
         border: "hsl(var(--border))",

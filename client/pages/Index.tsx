@@ -29,7 +29,7 @@ export default function Index() {
             transform: translateY(0);
           }
         }
-        
+
         .animate-fadeIn {
           animation: fadeIn 0.6s ease-out;
         }

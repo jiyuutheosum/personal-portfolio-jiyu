@@ -27,8 +27,10 @@ export default function Header() {
     >
       <div className="max-w-[1280px] mx-auto px-4 sm:px-8 lg:px-20">
         <div className="flex justify-between items-center h-[100px] sm:h-[138px]">
-          <h1 className="text-[#1E2929] font-poppins text-3xl sm:text-[50px] font-bold cursor-pointer"
-              onClick={() => scrollToSection("home")}>
+          <h1
+            className="text-[#1E2929] font-poppins text-3xl sm:text-[50px] font-bold cursor-pointer"
+            onClick={() => scrollToSection("home")}
+          >
             jiy.ui
           </h1>
           <nav className="flex gap-6 sm:gap-[45px] items-center">
