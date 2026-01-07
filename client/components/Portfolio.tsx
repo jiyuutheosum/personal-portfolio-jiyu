@@ -12,8 +12,8 @@ export default function Portfolio() {
       description:
         "An AI-powered mobile app that transforms uploaded PDFs into clear, concise summaries for faster and smarter learning.",
       tech: ["Firebase", "React", "Mobile"],
-      image:
-        "https://images.unsplash.com/photo-1498050108023-c5249f4df085?w=800&h=400&fit=crop",
+      image: "/assets/moongle-buddy-thumbnail.png",
+      Figma: "https://github.com/",
     },
     {
       title: "QuickMemo",
@@ -22,6 +22,7 @@ export default function Portfolio() {
       tech: ["HTML", "CSS"],
       image:
         "https://images.unsplash.com/photo-1484480974693-6ca0a78fb36b?w=800&h=400&fit=crop",
+      githubLink: "https://jalaniebrcr23.github.io/",
     },
   ];
 
