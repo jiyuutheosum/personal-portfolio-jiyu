@@ -70,7 +70,7 @@ export default function Portfolio() {
             ></div>
             <button
               onClick={() => setActiveTab("development")}
-              className={`relative z-10 px-12 py-2 font-poppins text-[25px] transition-colors duration-300 ${
+              className={`relative z-10 px-12[8rem] py-2 font-poppins text-[25px] transition-colors duration-300 ${
                 activeTab === "development"
                   ? "text-white font-normal"
                   : "text-[#344647] font-normal"
@@ -80,7 +80,7 @@ export default function Portfolio() {
             </button>
             <button
               onClick={() => setActiveTab("design")}
-              className={`relative z-10 px-12 py-2 font-poppins text-[25px] transition-colors duration-300 ${
+              className={`relative z-10 px-12[12rem] py-2 font-poppins text-[25px] transition-colors duration-300 ${
                 activeTab === "design"
                   ? "text-white font-normal"
                   : "text-[#344647] font-normal"
