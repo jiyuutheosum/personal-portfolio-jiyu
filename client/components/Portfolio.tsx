@@ -12,7 +12,7 @@ export default function Portfolio() {
       description:
         "An AI-powered mobile app that transforms uploaded PDFs into clear, concise summaries for faster and smarter learning.",
       tech: ["Firebase", "React", "Mobile"],
-      image: "/thumbnail-1.png",
+      image: "public/thumbnail-1.png",
       Figma: "https://github.com/",
     },
     {
