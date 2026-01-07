@@ -29,7 +29,7 @@ export default function Portfolio() {
     {
       title: "QuickEase 2.0",
       description:
-        "Creative design work showcasing modern UI/UX principles with focus on user experience and visual hierarchy.",
+        "An AI-powered study platform designed to support collaborative learning through an integrated online forum. It offers intelligent study tools such as content summarization, flashcard generation, and quiz creation, enhanced with interactive leaderboards that make learning more engaging and fun.",
       tech: ["Figma", "Website"],
       image:
         "https://images.unsplash.com/photo-1561070791-2526d30994b5?w=800&h=400&fit=crop",
@@ -37,7 +37,7 @@ export default function Portfolio() {
     {
       title: "Larga.cgy",
       description:
-        "Brand identity and visual design project with comprehensive style guide and component library.",
+        "A mobile app design focused on helping commuters in Cagayan de Oro easily track and navigate jeepney routes. The app aims to provide clear route information and an intuitive user interface to improve daily commuting experiences for both local residents and visitors.",
       tech: ["Figma", "Mobile"],
       image:
         "https://images.unsplash.com/photo-1626785774573-4b799315345d?w=800&h=400&fit=crop",
