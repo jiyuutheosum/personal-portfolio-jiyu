@@ -21,7 +21,7 @@ export default function Header() {
 
   return (
     <header
-      className={`fixed top-0 left-[7.5rem] right-[7.5rem] z-20 transition-all duration-300 ${
+      className={`fixed top-0 left-[7.5rem] right-[7.5rem] z-20 rounded-2xl transition-all duration-300 ${
         isScrolled ? "glassmorphism shadow-lg" : "bg-portfolio-bg"
       }`}
     >
