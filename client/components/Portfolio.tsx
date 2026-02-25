@@ -1,49 +1,12 @@
 import { useState } from "react";
+import { developmentProjects, designProjects } from "@/content/portfolio";
+import Container from "./layout/Container";
 
 export default function Portfolio() {
   const [activeTab, setActiveTab] = useState<"development" | "design">(
     "development",
   );
   const [currentSlide, setCurrentSlide] = useState(0);
-
-  const developmentProjects = [
-    {
-      title: "Moongle Buddy",
-      description:
-        "An AI-powered mobile app that transforms uploaded PDFs into clear, concise summaries for faster and smarter learning.",
-      tech: ["Firebase", "React", "Mobile"],
-      image: "public/thumbnail-1.png",
-      Figma: "https://github.com/",
-    },
-    {
-      title: "QuickMemo",
-      description:
-        "A simple web-based notepad designed for capturing, organizing, and managing daily notes with ease. It allows users to quickly write down ideas, reminders, and important thoughts in a clean and distraction-free interface, making everyday note-taking efficient and effortless.",
-      tech: ["HTML", "CSS"],
-      image:
-        "https://images.unsplash.com/photo-1484480974693-6ca0a78fb36b?w=800&h=400&fit=crop",
-      githubLink: "https://jalaniebrcr23.github.io/",
-    },
-  ];
-
-  const designProjects = [
-    {
-      title: "QuickEase 2.0",
-      description:
-        "An AI-powered study platform designed to support collaborative learning through an integrated online forum. It offers intelligent study tools such as content summarization, flashcard generation, and quiz creation, enhanced with interactive leaderboards that make learning more engaging and fun.",
-      tech: ["Figma", "Website"],
-      image:
-        "https://images.unsplash.com/photo-1561070791-2526d30994b5?w=800&h=400&fit=crop",
-    },
-    {
-      title: "Larga.cgy",
-      description:
-        "A mobile app design focused on helping commuters in Cagayan de Oro easily track and navigate jeepney routes. The app aims to provide clear route information and an intuitive user interface to improve daily commuting experiences for both local residents and visitors.",
-      tech: ["Figma", "Mobile"],
-      image:
-        "https://images.unsplash.com/photo-1626785774573-4b799315345d?w=800&h=400&fit=crop",
-    },
-  ];
 
   const projects =
     activeTab === "development" ? developmentProjects : designProjects;
@@ -55,73 +18,72 @@ export default function Portfolio() {
   return (
     <section
       id="portfolio"
-      className="min-h-[750px] bg-portfolio-bg px-4 sm:px-8 lg:px-20 py-20"
+      className="min-h-[750px] ghibli-bg px-4 sm:px-8 lg:px-20 py-24"
     >
-      <div className="max-w-[1280px] mx-auto">
-        <h2 className="text-black font-poppins text-[30px] font-semibold mb-12">
+      <Container>
+        <h2 className="text-ghibli-text font-poppins text-3xl font-semibold mb-16 text-center">
           Portfolio
         </h2>
 
-        <div className="relative w-full max-w-[845px] mx-auto mb-12">
-          <div className="h-[65px] rounded-[25px] bg-white flex items-center relative px-[20px]">
+        <div className="relative w-full max-w-[700px] mx-auto mb-16">
+          <div className="h-[60px] rounded-full bg-ghibli-surface flex items-center relative px-2 shadow-soft border border-ghibli-muted/30">
             <div
-              className={`absolute h-[45px] w-[390px] rounded-[20px] bg-[#344647] transition-all duration-500 ease-in-out ${activeTab === "development" ? "left-[20px]" : "left-[435px]"
-                }`}
+              className={`absolute h-[48px] w-[320px] rounded-full bg-ghibli-accent transition-all duration-500 ease-in-out ${
+                activeTab === "development" ? "left-2" : "left-[336px]"
+              }`}
             ></div>
 
             <button
               onClick={() => setActiveTab("development")}
-              className={`relative z-10 w-[390px] h-[45px] flex items-center justify-center font-poppins text-[25px] transition-colors duration-300 ${activeTab === "development"
-                  ? "text-white font-normal"
-                  : "text-[#344647] font-normal"
-                }`}
+              className={`relative z-10 w-[320px] h-[48px] flex items-center justify-center font-poppins text-lg transition-colors duration-300 ${
+                activeTab === "development"
+                  ? "text-white font-medium"
+                  : "text-ghibli-text font-medium"
+              }`}
             >
               Development
             </button>
 
             <button
               onClick={() => setActiveTab("design")}
-              className={`relative z-10 w-[390px] h-[45px] flex items-center justify-center font-poppins text-[25px] transition-colors duration-300 ${activeTab === "design"
-                  ? "text-white font-normal"
-                  : "text-[#344647] font-normal"
-                }`}
+              className={`relative z-10 w-[320px] h-[48px] flex items-center justify-center font-poppins text-lg transition-colors duration-300 ${
+                activeTab === "design"
+                  ? "text-white font-medium"
+                  : "text-ghibli-text font-medium"
+              }`}
             >
               Design
             </button>
           </div>
         </div>
 
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 mb-8">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 mb-12">
           {projects
             .slice(currentSlide, currentSlide + 2)
             .map((project, index) => (
               <div
                 key={index}
-                className="bg-white rounded-[20px] overflow-hidden shadow-lg transform transition-all duration-500 opacity-0 animate-fadeIn"
-                style={{
-                  animationDelay: `${index * 100}ms`,
-                  animationFillMode: "forwards",
-                }}
+                className="bg-ghibli-surface rounded-2xl overflow-hidden shadow-soft border border-ghibli-muted/20 transform transition-all duration-500 hover:shadow-sunlight hover:-translate-y-1"
               >
-                <div className="h-[188px] bg-[#D9D9D9] overflow-hidden">
+                <div className="h-[200px] bg-ghibli-muted/20 overflow-hidden">
                   <img
                     src={project.image}
                     alt={project.title}
-                    className="w-full h-full object-cover hover:scale-110 transition-transform duration-500"
+                    className="w-full h-full object-cover hover:scale-105 transition-transform duration-500"
                   />
                 </div>
-                <div className="p-4">
-                  <h3 className="text-black font-inter text-[15px] font-extrabold mb-2">
+                <div className="p-6">
+                  <h3 className="text-ghibli-text font-poppins text-lg font-semibold mb-3">
                     {project.title}
                   </h3>
-                  <p className="text-black font-inter text-[12px] font-normal mb-4 line-clamp-4">
+                  <p className="text-ghibli-text/70 font-poppins text-sm font-normal mb-4 line-clamp-4">
                     {project.description}
                   </p>
-                  <div className="flex gap-2">
+                  <div className="flex flex-wrap gap-2">
                     {project.tech.map((tech) => (
                       <span
                         key={tech}
-                        className="px-[9px] py-[4px] rounded-[5px] bg-[#1E2929] text-white font-inter text-[10px] font-normal"
+                        className="px-3 py-1.5 rounded-full bg-ghibli-accent/10 text-ghibli-accent font-poppins text-xs font-medium"
                       >
                         {tech}
                       </span>
@@ -133,24 +95,26 @@ export default function Portfolio() {
         </div>
 
         <div className="flex justify-center items-center gap-4">
-          <div className="flex gap-4">
+          <div className="flex gap-3">
             {[0, 1, 2].map((index) => (
               <div
                 key={index}
-                className={`w-[15px] h-[15px] rounded-full transition-colors duration-300 ${
-                  index === 0 ? "bg-[#1E2929]" : "bg-[#F5F5F5]"
+                className={`w-3 h-3 rounded-full transition-all duration-300 ${
+                  index === 0 
+                    ? "bg-ghibli-accent w-6" 
+                    : "bg-ghibli-muted/50"
                 }`}
               ></div>
             ))}
           </div>
           <button
             onClick={handleNext}
-            className="w-[50px] h-[25px] rounded-[20px] bg-black/85 flex items-center justify-center hover:scale-110 hover:bg-black transition-all duration-300 group ml-4"
+            className="w-12 h-12 rounded-full bg-ghibli-accent flex items-center justify-center hover:bg-ghibli-highlight hover:shadow-soft-lg transition-all duration-300 group ml-4"
             aria-label="Next projects"
           >
             <svg
               width="20"
-              height="1"
+              height="20"
               viewBox="0 0 20 1"
               fill="none"
               xmlns="http://www.w3.org/2000/svg"
@@ -158,12 +122,12 @@ export default function Portfolio() {
             >
               <path
                 d="M20.7071 0.707107C21.0976 0.316583 21.0976 -0.316583 20.7071 -0.707107L14.3431 -7.07107C13.9526 -7.46159 13.3195 -7.46159 12.9289 -7.07107C12.5384 -6.68054 12.5384 -6.04738 12.9289 -5.65685L18.5858 0L12.9289 5.65685C12.5384 6.04738 12.5384 6.68054 12.9289 7.07107C13.3195 7.46159 13.9526 7.46159 14.3431 7.07107L20.7071 0.707107ZM0 0V1H20V0V-1H0V0Z"
-                fill="#F5F5F5"
+                fill="white"
               />
             </svg>
           </button>
         </div>
-      </div>
+      </Container>
     </section>
   );
 }

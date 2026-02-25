@@ -72,11 +72,31 @@ export default {
           dark: "hsl(var(--portfolio-dark))",
           darker: "hsl(var(--portfolio-darker))",
         },
+        // Ghibli-inspired palette
+        ghibli: {
+          bg: "#dae5e7",
+          surface: "#f6f2ea",
+          text: "#1f2a2c",
+          accent: "#5f7f6c",
+          highlight: "#f4d6a0",
+          muted: "#c9b7a7",
+        },
       },
       borderRadius: {
         lg: "var(--radius)",
         md: "calc(var(--radius) - 2px)",
         sm: "calc(var(--radius) - 4px)",
+        // Soft Ghibli-style rounded corners
+        soft: "14px",
+        card: "18px",
+        pill: "9999px",
+      },
+      boxShadow: {
+        // Soft, sunlit shadows
+        soft: "0 8px 30px rgba(0,0,0,0.06)",
+        card: "0 10px 40px rgba(0,0,0,0.08)",
+        "soft-lg": "0 12px 40px rgba(95, 127, 108, 0.15)",
+        hover: "0 20px 50px rgba(0,0,0,0.1)",
       },
       keyframes: {
         "accordion-down": {

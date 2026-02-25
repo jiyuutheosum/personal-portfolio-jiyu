@@ -1,3 +1,6 @@
+import { NavLink } from "react-router-dom";
+import { Home, User, Sparkles, Folder, Mail } from "lucide-react";
+
 export default function Hero() {
   const socialLinks = [
     {
@@ -16,7 +19,7 @@ export default function Hero() {
       icon: "instagram",
       href: "https://www.instagram.com/jiyuxcz/",
       viewBox: "0 0 20 20",
-      path: "M11.029 0C12.154 0.003 12.725 0.009 13.218 0.023L13.412 0.03C13.636 0.038 13.857 0.0479999 14.124 0.0599999C15.188 0.11 15.914 0.278 16.551 0.525C17.211 0.779 17.767 1.123 18.323 1.678C18.831 2.17773 19.225 2.78247 19.476 3.45C19.723 4.087 19.891 4.813 19.941 5.878C19.953 6.144 19.963 6.365 19.971 6.59L19.977 6.784C19.992 7.276 19.998 7.847 20 8.972L20.001 9.718V11.028C20.003 11.7574 19.995 12.4868 19.978 13.216L19.972 13.41C19.964 13.635 19.954 13.856 19.942 14.122C19.892 15.187 19.722 15.912 19.476 16.55C19.225 17.2175 18.831 17.8223 18.323 18.322C17.823 18.8307 17.218 19.2242 16.551 19.475C15.914 19.722 15.188 19.89 14.124 19.94L13.412 19.97L13.218 19.976C12.725 19.99 12.154 19.997 11.029 19.999L10.283 20H8.974C8.244 20.0026 7.514 19.9949 6.785 19.977L6.591 19.971C6.353 19.962 6.116 19.9517 5.879 19.94C4.815 19.89 4.089 19.722 3.451 19.475C2.783 19.2241 2.179 18.8306 1.68 18.322C1.171 17.8224 0.777 17.2176 0.526 16.55C0.279 15.913 0.111 15.187 0.061 14.122L0.031 13.41L0.026 13.216C0.007 12.4868 -0.001 11.7574 0.001 11.028V8.972C-0.002 8.2426 0.005 7.5132 0.023 6.784L0.03 6.59C0.038 6.365 0.048 6.144 0.06 5.878C0.11 4.813 0.278 4.088 0.525 3.45C0.776 2.7822 1.171 2.17744 1.681 1.678C2.18 1.16955 2.784 0.776074 3.451 0.525C4.089 0.278 4.814 0.11 5.879 0.0599999C6.145 0.0479999 6.367 0.038 6.591 0.03L6.785 0.0239999C7.514 0.00623271 8.243 -0.0014347 8.973 0.000999928L11.029 0ZM10.001 5C8.674 5 7.403 5.52678 6.465 6.46447C5.527 7.40215 5.001 8.67392 5.001 10C5.001 11.3261 5.527 12.5979 6.465 13.5355C7.403 14.4732 8.674 15 10.001 15C11.327 15 12.598 14.4732 13.536 13.5355C14.474 12.5979 15.001 11.3261 15.001 10C15.001 8.67392 14.474 7.40215 13.536 6.46447C12.598 5.52678 11.327 5 10.001 5ZM10.001 7C10.395 6.99993 10.785 7.07747 11.149 7.22817C11.513 7.37887 11.843 7.5998 12.122 7.87833C12.401 8.15686 12.622 8.48754 12.773 8.85149C12.923 9.21544 13.001 9.60553 13.001 9.9995C13.001 10.3935 12.924 10.7836 12.773 11.1476C12.622 11.5116 12.401 11.8423 12.123 12.121C11.844 12.3996 11.514 12.6206 11.15 12.7714C10.786 12.9223 10.396 12.9999 10.002 13C9.206 13 8.443 12.6839 7.88 12.1213C7.318 11.5587 7.002 10.7956 7.002 10C7.002 9.20435 7.318 8.44129 7.88 7.87868C8.443 7.31607 9.206 7 10.002 7ZM15.252 3.5C14.92 3.5 14.602 3.6317 14.368 3.86612C14.133 4.10054 14.002 4.41848 14.002 4.75C14.002 5.08152 14.133 5.39946 14.368 5.63388C14.602 5.8683 14.92 6 15.252 6C15.583 6 15.901 5.8683 16.135 5.63388C16.37 5.39946 16.502 5.08152 16.502 4.75C16.502 4.41848 16.37 4.10054 16.135 3.86612C15.901 3.6317 15.583 3.5 15.252 3.5Z",
+      path: "M11.029 0C12.154 0.003 12.725 0.009 13.218 0.023L13.412 0.03C13.636 0.038 13.857 0.0479999 14.124 0.0599999C15.188 0.11 15.914 0.278 16.551 0.525C17.211 0.779 17.767 1.123 18.323 1.678C18.831 2.17773 19.225 2.78247 19.476 3.45C19.723 4.087 19.891 4.813 19.941 5.878C19.953 6.144 19.963 6.365 19.971 6.59L19.977 6.784C19.992 7.276 19.998 7.847 20 8.972L20.001 9.718V11.028C20.003 11.7574 19.995 12.4868 19.978 13.216L19.972 13.41C19.964 13.635 19.954 13.856 19.942 14.122C19.892 15.187 19.722 15.912 19.476 16.55C19.225 17.2175 18.831 17.8223 18.323 18.322C17.823 18.8307 17.218 19.2242 16.551 19.475C15.914 19.722 15.188 19.89 14.124 19.94L13.412 19.97L13.218 19.976C12.725 19.99 12.154 19.997 11.029 19.999L10.283 20H8.974C8.244 20.0026 7.514 19.9949 6.785 19.977L6.591 19.971C6.353 19.962 6.116 19.9517 5.879 19.94C4.815 19.89 4.089 19.722 3.451 19.475C2.783 19.2241 2.179 18.8306 1.68 18.322C1.171 17.8224 0.777 17.2176 0.526 16.55C0.279 15.913 0.111 15.187 0.061 14.122L0.031 13.41L0.026 13.216C0.007 12.4868 -0.001 11.7574 0.001 11.028V8.972C-0.002 8.2426 0.005 7.5132 0.023 6.784L0.03 6.59C0.038 6.365 0.048 6.144 0.06 5.878C0.11 4.813 0.278 4.088 0.525 3.45C0.776 2.7822 1.171 2.17744 1.681 1.678C2.18 1.16955 2.784 0.776074 3.451 0.525C4.089 0.278 4.814 0.11 5.879 0.0599999C6.145 0.0479999 6.367 0.038 6.591 0.03L6.785 0.0239999C7.514 0.00623271 8.243 -0.0014347 8.973 0.000999928L11.029 0Z",
     },
     {
       icon: "email",
@@ -30,51 +33,90 @@ export default function Hero() {
       target: "_blank",
       rel: "noopener noreferrer",
       viewBox: "0 0 16 20",
-      path: "M9.001 7H14.501L9.001 1.5V7ZM2.001 0H10.001L16.001 6V18C16.001 18.5305 15.79 19.0392 15.415 19.4142C15.04 19.7893 14.531 20 14.001 20H2.001C1.471 20 0.962 19.7893 0.587 19.4142C0.212 19.0392 0.001 18.5305 0.001 18V2C0.001 0.89 0.891 0 2.001 0ZM10.001 18V17C1e-3 -3 -3 -3 -3 -3 -3 -3 -3 -3 -3 -3 -3 -3 -3 -3 -3 -3"
-    }
+      path: "M9.001 7H14.501L9.001 1.5V7ZM2.001 0H10.001L16.001 6V18C16.001 18.5305 15.79 19.0392 15.415 19.4142C15.04 19.7893 14.531 20 14.001 20H2.001C1.471 20 0.962 19.7893 0.587 19.4142C0.212 19.0392 0.001 18.5305 0.001 18V2C0.001 0.89 0.891 0 2.001 0Z",
+    },
+  ];
+
+  const menuItems = [
+    { label: "Home", to: "/", Icon: Home },
+    { label: "About me", to: "/about", Icon: User },
+    { label: "Skills", to: "/skills", Icon: Sparkles },
+    { label: "Portfolio", to: "/portfolio", Icon: Folder },
+    { label: "Contact", to: "/contact", Icon: Mail },
   ];
 
   return (
-    <section
-      id="home"
-      className="min-h-screen bg-portfolio-bg flex flex-col items-center justify-center px-4 pt-[138px] pb-12"
-    >
-      <div className="flex flex-col items-center gap-3 max-w-lg">
-        <div className="w-[150px] h-[150px] sm:w-[200px] sm:h-[200px] rounded-full overflow-hidden border-4 border-white shadow-lg">
-          <img
-            src="https://api.builder.io/api/v1/image/assets/TEMP/3b68dc1158bd905aefca1b49b943a4e40fedf064?width=400"
-            alt="Profile"
-            className="w-full h-full object-cover"
-          />
-        </div>
-        <h2 className="text-[#1E2929] font-poppins text-2xl font-semibold">
-          @Jiyuu
-        </h2>
-        <p className="text-[#1E2929] font-poppins text-[15px] font-normal text-center">
-          "Building clean, intuitive digital experiences"
-        </p>
-        <div className="w-full max-w-[300px] h-[58px] rounded-[25px] bg-white shadow-[0_4px_4px_0_rgba(0,0,0,0.85)] flex items-center justify-center gap-[30px] mt-2">
-          {socialLinks.map((social) => (
-            <a
-              key={social.icon}
-              href={social.href}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="hover:scale-125 hover:rotate-6 transition-all duration-300"
-              aria-label={social.icon}
-            >
-              <svg
-                width="20"
-                height="20"
-                viewBox={social.viewBox}
-                fill="none"
-                xmlns="http://www.w3.org/2000/svg"
-                className="fill-black hover:fill-portfolio-dark transition-colors"
+    <section className="relative min-h-screen w-full overflow-hidden">
+      {/* Full-page background */}
+      <div
+        className="absolute inset-0 bg-cover bg-center bg-no-repeat bg-fixed"
+        style={{ backgroundImage: "url(/bg-landing.jpg)" }}
+      />
+      {/* Overlay for readability */}
+      <div className="absolute inset-0 bg-[#0b1b25]/35" />
+
+      {/* Centered Card */}
+      <div className="relative z-10 flex min-h-screen items-center justify-center px-4 py-6">
+        <div className="w-full max-w-[520px] rounded-[28px] border border-white/70 bg-[#4f7a82]/95 px-8 py-10 text-center text-white backdrop-blur-sm shadow-[0_40px_120px_rgba(0,0,0,0.45)]">
+          {/* Avatar */}
+          <div className="mx-auto mb-5 h-24 w-24 overflow-hidden rounded-full border-4 border-white/70">
+            <img
+              src="/profile.png"
+              alt="Profile"
+              className="h-full w-full object-cover"
+            />
+          </div>
+
+          <h1 className="text-3xl font-semibold tracking-tight">Hi! I&apos;m Jiyuu!</h1>
+
+          <p className="mx-auto mt-3 max-w-[40ch] text-sm leading-relaxed text-white/90">
+            Building clean, intuitive digital experiences.
+          </p>
+
+          {/* Social Icons */}
+          <div className="mt-6 flex items-center justify-center gap-6">
+            {socialLinks.map((social) => (
+              <a
+                key={social.icon}
+                href={social.href}
+                target={social.target ?? "_blank"}
+                rel={social.rel ?? "noopener noreferrer"}
+                className="rounded-full p-2 transition hover:bg-white/10"
+                aria-label={social.icon}
               >
-                <path d={social.path} fill="black" />
-              </svg>
-            </a>
-          ))}
+                <svg
+                  width="20"
+                  height="20"
+                  viewBox={social.viewBox}
+                  fill="none"
+                  xmlns="http://www.w3.org/2000/svg"
+                  className="fill-white/90"
+                >
+                  <path d={social.path} />
+                </svg>
+              </a>
+            ))}
+          </div>
+
+          {/* Menu Buttons w/ Icons */}
+          <div className="mt-7 space-y-3">
+            {menuItems.map(({ label, to, Icon }) => (
+              <NavLink
+                key={to}
+                to={to}
+                className="group flex items-center justify-between rounded-full border border-white/70 px-5 py-3 text-sm text-white/95 transition hover:bg-white/10"
+              >
+                <span className="flex items-center gap-3">
+                  <span className="grid h-8 w-8 place-items-center rounded-full border border-white/50 bg-white/5">
+                    <Icon className="h-4 w-4 text-white/90" />
+                  </span>
+                  <span>{label}</span>
+                </span>
+
+                <span className="text-white/80 transition group-hover:translate-x-0.5">→</span>
+              </NavLink>
+            ))}
+          </div>
         </div>
       </div>
     </section>

@@ -1,0 +1,21 @@
+/* Design Tokens for Portfolio Redesign */
+:root {
+  /* Colors */
+  --bg: #dae5e7;
+  --surface: #f6f2ea;
+  --text: #1f2a2c;
+  --accent: #5f7f6c;
+  --highlight: #f4d6a0;
+  --muted: #c9b7a7;
+
+  /* Border Radius */
+  --radius-soft: 14px;
+  --radius-card: 18px;
+
+  /* Shadows */
+  --shadow-soft: 0 8px 30px rgba(0,0,0,0.06);
+  --shadow-card: 0 10px 40px rgba(0,0,0,0.08);
+
+  /* Typography */
+  --font-body: system-ui, sans-serif;
+}

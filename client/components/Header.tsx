@@ -1,52 +1,84 @@
-import { useState, useEffect } from "react";
+import React from 'react';
+import { NavLink } from 'react-router-dom';
+import { Home, User, Sparkles, FolderKanban, Mail } from 'lucide-react';
 
-export default function Header() {
-  const [isScrolled, setIsScrolled] = useState(false);
+type NavItem = {
+  label: string;
+  to: string;
+  Icon?: React.ComponentType<{ className?: string }>;
+};
 
-  useEffect(() => {
-    const handleScroll = () => {
-      setIsScrolled(window.scrollY > 50);
-    };
+const navItems: NavItem[] = [
+  { label: 'Home', to: '/', Icon: Home },
+  { label: 'About', to: '/about', Icon: User },
+  { label: 'Skills', to: '/skills', Icon: Sparkles },
+  { label: 'Portfolio', to: '/portfolio', Icon: FolderKanban },
+  { label: 'Contact', to: '/contact', Icon: Mail },
+];
 
-    window.addEventListener("scroll", handleScroll);
-    return () => window.removeEventListener("scroll", handleScroll);
-  }, []);
-
-  const scrollToSection = (sectionId: string) => {
-    const element = document.getElementById(sectionId);
-    if (element) {
-      element.scrollIntoView({ behavior: "smooth" });
-    }
-  };
-
+const Header = (): React.JSX.Element => {
   return (
-    <header
-      className={`fixed top-0 left-[7.5rem] right-[7.5rem] z-20 rounded-2xl transition-all duration-300 ${
-        isScrolled ? "glassmorphism shadow-lg" : "bg-portfolio-bg"
-      }`}
-    >
-      <div className="max-w-[1280px] mx-auto px-4 sm:px-8 lg:px-20">
-        <div className="flex justify-between items-center h-[100px] sm:h-[138px]">
-          <h1
-            className="text-[#1E2929] font-poppins text-3xl sm:text-[50px] font-bold cursor-pointer"
-            onClick={() => scrollToSection("home")}
+    <header className="sticky top-4 z-50">
+      <div className="mx-auto max-w-6xl px-4">
+        {/* Paper bar */}
+        <div
+          className={[
+            'flex items-center justify-between',
+            'rounded-3xl px-5 py-3 sm:px-7 sm:py-4',
+            'border border-black/5',
+            'bg-[var(--surface)]',
+            'shadow-[var(--shadow-soft)]',
+          ].join(' ')}
+        >
+          {/* Logo / Brand */}
+          <NavLink
+            to="/"
+            className="flex items-center gap-2 text-[var(--text)]"
           >
-            J.ui
-          </h1>
-          <nav className="flex gap-6 sm:gap-[45px] items-center">
-            {["Home", "About", "Skills", "Portfolio", "Contact"].map((item) => (
-              <button
-                key={item}
-                onClick={() => scrollToSection(item.toLowerCase())}
-                className="text-[#1E2929] font-poppins text-sm sm:text-[15px] font-normal hover:font-semibold hover:scale-110 transition-all duration-200 relative group"
+            <span className="text-2xl font-semibold tracking-tight">J.ui</span>
+            <span className="hidden sm:inline text-sm opacity-70">— portfolio</span>
+          </NavLink>
+
+          {/* Nav */}
+          <nav className="hidden md:flex items-center gap-2">
+            {navItems.map(({ label, to, Icon }) => (
+              <NavLink
+                key={to}
+                to={to}
+                className={({ isActive }) =>
+                  [
+                    'group inline-flex items-center gap-2',
+                    'rounded-2xl px-3 py-2',
+                    'text-sm font-medium',
+                    'text-[var(--text)]/75 hover:text-[var(--text)]',
+                    'transition',
+                    isActive ? 'bg-black/5 text-[var(--text)]' : 'hover:bg-black/5',
+                  ].join(' ')
+                }
               >
-                {item}
-                <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-[#1E2929] group-hover:w-full transition-all duration-300"></span>
-              </button>
+                {Icon ? <Icon className="h-4 w-4 opacity-70 group-hover:opacity-100" /> : null}
+                <span className="relative">
+                  {label}
+                  {/* soft underline on hover */}
+                  <span className="pointer-events-none absolute left-0 -bottom-1 h-[2px] w-0 bg-[var(--accent)]/60 transition-all group-hover:w-full" />
+                </span>
+              </NavLink>
             ))}
           </nav>
+
+          {/* Mobile: simple */}
+          <div className="md:hidden">
+            <NavLink
+              to="/"
+              className="rounded-2xl px-3 py-2 text-sm font-medium bg-black/5 text-[var(--text)]"
+            >
+              Menu
+            </NavLink>
+          </div>
         </div>
       </div>
     </header>
   );
-}
+};
+
+export default Header;
