@@ -1,16 +1,11 @@
-/* Google Fonts */
 @import url("https://fonts.googleapis.com/css2?family=Fraunces:wght@400;500;600&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap");
 
-/* Tailwind directives (REQUIRED ORDER) */
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
 
-/* ===============================
-   BASE LAYER
-   =============================== */
 @layer base {
   :root {
     /* Atmospheric Ghibli palette */
@@ -42,13 +37,8 @@
   }
 }
 
-
-/* ===============================
-   UTILITIES
-   =============================== */
 @layer utilities {
 
-  /* Cinematic background helper */
   .ghibli-bg {
     background: radial-gradient(
         circle at 20% 20%,
@@ -98,4 +88,58 @@
     transform: translateY(-1px);
   }
 
+}
+
+
+/* Hide native cursor */
+html.has-custom-cursor,
+html.has-custom-cursor * {
+  cursor: none !important;
+}
+
+/* Allow text cursor in inputs */
+html.has-custom-cursor input,
+html.has-custom-cursor textarea,
+html.has-custom-cursor select,
+html.has-custom-cursor button,
+html.has-custom-cursor [contenteditable] {
+  cursor: auto !important;
+}
+
+/* Main cursor */
+.custom-cursor {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 38px;
+  height: 38px;
+  pointer-events: none;
+  z-index: 9999;
+
+  background-image: url("/public/custom-cursor.png");
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
+
+  transform: translate(-50%, -50%);
+  transition:
+    width 180ms ease,
+    height 180ms ease,
+    transform 160ms ease,
+    opacity 160ms ease;
+}
+
+/* Hover variant */
+.custom-cursor[data-variant="hover"] {
+  width: 30px;
+  height: 30px;
+  background-image: url("/public/cursor-hover.png");
+}
+
+/* Disable on mobile */
+@media (max-width: 768px) {
+  .custom-cursor,
+  .custom-cursor-follower {
+    display: none !important;
+  }
 }

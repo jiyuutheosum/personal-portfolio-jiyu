@@ -7,6 +7,8 @@ import { TooltipProvider } from "@/components/ui/tooltip";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 
+import BubbleCursor from "@/components/ui/bubble-cursor";
+import CustomCursor from "./components/ui/custom-cursor";
 import Index from "./pages/Index";
 import NotFound from "./pages/NotFound";
 import About from "./pages/About";
@@ -19,8 +21,12 @@ const queryClient = new QueryClient();
 const App = () => (
   <QueryClientProvider client={queryClient}>
     <TooltipProvider>
+      <BubbleCursor />
+      <CustomCursor />
+
       <Toaster />
       <Sonner />
+
       <BrowserRouter>
         <Routes>
           <Route path="/" element={<Index />} />
