@@ -116,14 +116,16 @@ export default function CustomCursor() {
     window.addEventListener("mouseout", onOut, true);
     document.addEventListener("visibilitychange", onVisibility);
 
-    // animation loop: lerp for smoothing
-    const ease = 0.20; // main cursor smoothness
-    const followEase = 0.15; // trailing smoothness
+    const ease = 0.18;
+    const followEase = 0.08;
 
     const loop = () => {
-      // simple lerp
       cur.current.x += (pos.current.x - cur.current.x) * ease;
       cur.current.y += (pos.current.y - cur.current.y) * ease;
+
+       follower.current.x += (cur.current.x - follower.current.x) * followEase;
+       follower.current.y += (cur.current.y - follower.current.y) * followEase;
+
 
       follower.current.x +=
         (cur.current.x - follower.current.x) * followEase;
