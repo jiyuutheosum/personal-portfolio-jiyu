@@ -1,14 +1,8 @@
 import React, { useEffect, useRef } from "react";
 
-/**
- * Global Custom Cursor
- *
- * - Mount once (usually in App.tsx)
- * - Add data-cursor="noface" (or any name) on elements to trigger a variant
- * - Respects prefers-reduced-motion and disables on small screens (mobile)
- */
-
-type CursorVariant = "default" | "hover" | "noface" | string;
+type CustomCursorProps = {
+  wrapperElement?: HTMLElement | null;
+};
 
 const isMobile = () => {
   if (typeof navigator === "undefined") return false;
@@ -17,15 +11,17 @@ const isMobile = () => {
   );
 };
 
-export default function CustomCursor() {
+export default function CustomCursor({ wrapperElement }: CustomCursorProps) {
   const cursorRef = useRef<HTMLDivElement | null>(null);
   const followerRef = useRef<HTMLDivElement | null>(null);
   const rafRef = useRef<number | null>(null);
 
-  // Position state (we don't use setState to avoid re-renders)
-  const pos = useRef({ x: 0, y: 0 }); // pointer target
-  const cur = useRef({ x: 0, y: 0 }); // cursor actual
-  const follower = useRef({ x: 0, y: 0 }); // trailing
+  const pos = useRef({ x: 0, y: 0 });
+  const cur = useRef({ x: 0, y: 0 });
+  const follower = useRef({ x: 0, y: 0 });
+
+  const isVisibleRef = useRef(false);
+  const hasInitPosRef = useRef(false);
 
   useEffect(() => {
     if (typeof window === "undefined") return;
@@ -34,108 +30,124 @@ export default function CustomCursor() {
       "(prefers-reduced-motion: reduce)"
     );
     if (prefersReducedMotion.matches) return;
-    if (isMobile()) return; // disable on mobile by default for performance/usability
+    if (isMobile()) return;
 
-    // Create DOM nodes if they don't exist (or use refs)
-    let cursor = cursorRef.current;
-    let followerEl = followerRef.current;
+    const scope = wrapperElement ?? document.documentElement;
 
-    if (!cursor) {
-      cursor = document.createElement("div");
-      cursor.className = "custom-cursor";
-      cursor.setAttribute("data-variant", "default");
-      document.body.appendChild(cursor);
-      cursorRef.current = cursor;
-    }
+    const cursor = document.createElement("div");
+    cursor.className = "custom-cursor";
+    cursor.setAttribute("data-variant", "default");
+    cursor.style.opacity = "0";
+    document.body.appendChild(cursor);
+    cursorRef.current = cursor;
 
-    if (!followerEl) {
-      followerEl = document.createElement("div");
-      followerEl.className = "custom-cursor-follower";
-      document.body.appendChild(followerEl);
-      followerRef.current = followerEl;
-    }
+    const followerEl = document.createElement("div");
+    followerEl.className = "custom-cursor-follower";
+    followerEl.style.opacity = "0";
+    document.body.appendChild(followerEl);
+    followerRef.current = followerEl;
 
-    // Ensure native cursor hidden (we add a class to body so devs can opt-out if needed)
     document.documentElement.classList.add("has-custom-cursor");
 
-    const onMove = (e: MouseEvent) => {
-      pos.current.x = e.clientX;
-      pos.current.y = e.clientY;
-      // Immediately position the visible cursor element to avoid initial jump
-      // (actual smoothing done in animation loop)
+    const show = () => {
+      if (isVisibleRef.current) return;
+      isVisibleRef.current = true;
+      if (cursorRef.current) cursorRef.current.style.opacity = "1";
+      if (followerRef.current) followerRef.current.style.opacity = "1";
     };
 
-    // Variant handling: set data-variant on cursor based on hovered element
+    const hide = () => {
+      if (!isVisibleRef.current) return;
+      isVisibleRef.current = false;
+      if (cursorRef.current) cursorRef.current.style.opacity = "0";
+      if (followerRef.current) followerRef.current.style.opacity = "0";
+    };
+
+    const onMove = (e: MouseEvent) => {
+      show();
+
+      if (wrapperElement) {
+        const rect = wrapperElement.getBoundingClientRect();
+        pos.current.x = e.clientX;
+        pos.current.y = e.clientY;
+
+        // still track global coords because cursor is fixed on body,
+        // but we only show when inside wrapper via enter/leave handlers.
+        // (so no coordinate remap needed)
+        if (!hasInitPosRef.current) {
+          hasInitPosRef.current = true;
+          cur.current.x = e.clientX;
+          cur.current.y = e.clientY;
+          follower.current.x = e.clientX;
+          follower.current.y = e.clientY;
+        }
+        return;
+      }
+
+      pos.current.x = e.clientX;
+      pos.current.y = e.clientY;
+
+      if (!hasInitPosRef.current) {
+        hasInitPosRef.current = true;
+        cur.current.x = e.clientX;
+        cur.current.y = e.clientY;
+        follower.current.x = e.clientX;
+        follower.current.y = e.clientY;
+      }
+    };
+
     const onOver = (e: Event) => {
       const target = e.target as HTMLElement | null;
-      if (!target) return;
+      if (!target || !cursorRef.current) return;
 
-      // if an element explicitly sets data-cursor, use that
       const explicit = target.closest("[data-cursor]") as HTMLElement | null;
       if (explicit) {
         const v = explicit.getAttribute("data-cursor") || "default";
-        cursor!.setAttribute("data-variant", v);
-        cursor!.classList.add("custom-cursor--active");
+        cursorRef.current.setAttribute("data-variant", v);
         return;
       }
 
-      // standard interactions: links, buttons, inputs, selects -> smaller/hidden cursor or hover style
-      const tag = target.tagName.toLowerCase();
       if (
         target.closest("a, button, input, textarea, select, label, [role='button']")
       ) {
-        cursor!.setAttribute("data-variant", "hover");
-        cursor!.classList.add("custom-cursor--active");
+        cursorRef.current.setAttribute("data-variant", "hover");
         return;
       }
 
-      // default
-      cursor!.setAttribute("data-variant", "default");
-      cursor!.classList.remove("custom-cursor--active");
+      cursorRef.current.setAttribute("data-variant", "default");
     };
 
-    const onOut = (e: Event) => {
-      // reset to default
-      cursor!.setAttribute("data-variant", "default");
-      cursor!.classList.remove("custom-cursor--active");
+    const onEnter = () => {
+      // show only when inside the website container
+      show();
     };
 
-    const onVisibility = () => {
-      // hide when tab not visible
-      if (document.hidden) {
-        cursor!.style.opacity = "0";
-        followerEl!.style.opacity = "0";
-      } else {
-        cursor!.style.opacity = "";
-        followerEl!.style.opacity = "";
-      }
+    const onLeave = () => {
+      // hide when leaving the website container
+      hide();
     };
 
-    window.addEventListener("mousemove", onMove);
-    window.addEventListener("mouseover", onOver, true);
-    window.addEventListener("mouseout", onOut, true);
-    document.addEventListener("visibilitychange", onVisibility);
+    const onBlur = () => hide();
 
-    const ease = 0.18;
-    const followEase = 0.08;
+    scope.addEventListener("mouseenter", onEnter);
+    scope.addEventListener("mouseleave", onLeave);
+    scope.addEventListener("mousemove", onMove);
+    scope.addEventListener("mouseover", onOver, true);
+    window.addEventListener("blur", onBlur);
+
+    const followEase = 0.12;
 
     const loop = () => {
-      cur.current.x += (pos.current.x - cur.current.x) * ease;
-      cur.current.y += (pos.current.y - cur.current.y) * ease;
+      cur.current.x = pos.current.x;
+      cur.current.y = pos.current.y;
 
-       follower.current.x += (cur.current.x - follower.current.x) * followEase;
-       follower.current.y += (cur.current.y - follower.current.y) * followEase;
+      follower.current.x += (cur.current.x - follower.current.x) * followEase;
+      follower.current.y += (cur.current.y - follower.current.y) * followEase;
 
-
-      follower.current.x +=
-        (cur.current.x - follower.current.x) * followEase;
-      follower.current.y +=
-        (cur.current.y - follower.current.y) * followEase;
-
-      if (cursorRef.current) {
+      if (cursorRef.current && isVisibleRef.current) {
         cursorRef.current.style.transform = `translate3d(${cur.current.x}px, ${cur.current.y}px, 0) translate(-50%, -50%)`;
       }
-      if (followerRef.current) {
+      if (followerRef.current && isVisibleRef.current) {
         followerRef.current.style.transform = `translate3d(${follower.current.x}px, ${follower.current.y}px, 0) translate(-50%, -50%)`;
       }
 
@@ -144,13 +156,14 @@ export default function CustomCursor() {
 
     rafRef.current = requestAnimationFrame(loop);
 
-    // cleanup
     return () => {
       if (rafRef.current) cancelAnimationFrame(rafRef.current);
-      window.removeEventListener("mousemove", onMove);
-      window.removeEventListener("mouseover", onOver, true);
-      window.removeEventListener("mouseout", onOut, true);
-      document.removeEventListener("visibilitychange", onVisibility);
+
+      scope.removeEventListener("mouseenter", onEnter);
+      scope.removeEventListener("mouseleave", onLeave);
+      scope.removeEventListener("mousemove", onMove);
+      scope.removeEventListener("mouseover", onOver, true);
+      window.removeEventListener("blur", onBlur);
 
       if (cursorRef.current) {
         cursorRef.current.remove();
@@ -160,9 +173,10 @@ export default function CustomCursor() {
         followerRef.current.remove();
         followerRef.current = null;
       }
+
       document.documentElement.classList.remove("has-custom-cursor");
     };
-  }, []);
+  }, [wrapperElement]);
 
-  return null; // this component manages DOM nodes directly
+  return null;
 }
