@@ -1,0 +1,151 @@
+@import url("https://fonts.googleapis.com/css2?family=Fraunces:wght@400;500;600&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap");
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+
+@layer base {
+  :root {
+    /* Atmospheric Ghibli palette */
+    --bg-fog: #0b1b25;
+    --card: #436f71;
+    --card-hover: #385f61;
+    --border: rgba(255,255,255,0.55);
+    --text: rgba(255,255,255,0.92);
+    --muted: rgba(255,255,255,0.75);
+    --accent: #c8d9b0;
+    --accent-warm: #f2e7c7;
+  }
+
+  html,
+  body,
+  #root {
+    min-height: 100vh;
+  }
+
+  body {
+    margin: 0;
+    font-family: "Poppins", -apple-system, Roboto, Helvetica, sans-serif;
+    background: transparent;
+    color: var(--text);
+  }
+  h1, h2, h3 {
+    font-family: "Fraunces", serif;
+  }
+}
+
+@layer utilities {
+
+  .ghibli-bg {
+    background: radial-gradient(
+        circle at 20% 20%,
+        rgba(255,255,255,0.04),
+        transparent 60%
+      ),
+      linear-gradient(to bottom, #0b1b25, #0b1b25);
+  }
+
+  /* Soft atmospheric grain overlay */
+  .noise-overlay {
+    position: relative;
+  }
+
+  .noise-overlay::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
+    opacity: 0.035;
+    pointer-events: none;
+    z-index: 1;
+  }
+
+  /* Reusable Storybook Card */
+  .ghibli-card {
+    background: rgba(67, 111, 113, 0.92);
+    border: 1px solid var(--border);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+
+    /* Soft frame illusion */
+    box-shadow:
+      0 40px 120px rgba(0,0,0,0.45),
+      inset 0 0 0 1px rgba(255,255,255,0.15);
+
+    border-radius: 28px;
+  }
+
+  /* Soft highlight hover */
+  .ghibli-hover {
+    transition: all 0.25s ease;
+  }
+
+  .ghibli-hover:hover {
+    background: rgba(255,255,255,0.08);
+    transform: translateY(-1px);
+  }
+
+}
+
+
+/* Hide native cursor */
+html.has-custom-cursor,
+html.has-custom-cursor * {
+  cursor: none !important;
+}
+
+/* Allow text cursor in inputs */
+html.has-custom-cursor input,
+html.has-custom-cursor textarea,
+html.has-custom-cursor select,
+html.has-custom-cursor button,
+html.has-custom-cursor [contenteditable] {
+  cursor: auto !important;
+}
+
+.custom-cursor {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 35px;
+  height: 35px;
+  pointer-events: none;
+  z-index: 9999;
+
+  background-image: url("../assets/images/custom-cursor.png");
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
+
+  transform: translate(-50%, -50%);
+
+  /* IMPORTANT: remove transform from transition */
+  transition: width 180ms ease, height 180ms ease, opacity 160ms ease;
+}
+
+.custom-cursor[data-variant="hover"] {
+  width: 30px;
+  height: 30px;
+  background-image: url("../assets/images/cursor-hover.png");
+}
+
+.custom-cursor-follower {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: 9998;
+}
+
+/* Disable on mobile */
+@media (max-width: 768px) {
+  .custom-cursor,
+  .custom-cursor-follower {
+    display: none !important;
+  }
+}
