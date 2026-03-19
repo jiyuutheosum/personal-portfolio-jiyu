@@ -7,17 +7,17 @@ export interface Photo {
 export const oceanPhotos: Photo[] = [
   {
     title: "Unwind",
-    caption: "A moment where the sea felt endless and calm.",
+    caption: "A quiet escape where the ocean calmed both mind and soul.",
     image: "/images/dagat1.png",
   },
   {
     title: "Starfish",
-    caption: "Sunlight resting gently on the waves.",
+    caption: "A quiet moment where a starfish rests beneath soft, sunlit waves.",
     image: "/images/dagat2.png",
   },
   {
     title: "Dog at the Sea",
-    caption: "The quiet rhythm of the ocean at dusk.",
+    caption: "A small soul by the sea, calm and free in the quiet of the moment.",
     image: "/images/dagat3.png",
   },
   {
