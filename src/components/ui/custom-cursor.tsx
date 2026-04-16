@@ -11,7 +11,7 @@ const isMobile = () => {
   );
 };
 
-export default function CustomCursor({ wrapperElement }: CustomCursorProps) {
+export default function CustomCursor({ wrapperElement: _wrapperElement }: CustomCursorProps) {
   const cursorRef = useRef<HTMLDivElement | null>(null);
   const followerRef = useRef<HTMLDivElement | null>(null);
   const rafRef = useRef<number | null>(null);
@@ -32,7 +32,7 @@ export default function CustomCursor({ wrapperElement }: CustomCursorProps) {
     if (prefersReducedMotion.matches) return;
     if (isMobile()) return;
 
-    const scope = wrapperElement ?? document.documentElement;
+    const scope = document.documentElement;
 
     const cursor = document.createElement("div");
     cursor.className = "custom-cursor";
@@ -52,6 +52,7 @@ export default function CustomCursor({ wrapperElement }: CustomCursorProps) {
     const show = () => {
       if (isVisibleRef.current) return;
       isVisibleRef.current = true;
+
       if (cursorRef.current) cursorRef.current.style.opacity = "1";
       if (followerRef.current) followerRef.current.style.opacity = "1";
     };
@@ -59,30 +60,13 @@ export default function CustomCursor({ wrapperElement }: CustomCursorProps) {
     const hide = () => {
       if (!isVisibleRef.current) return;
       isVisibleRef.current = false;
+
       if (cursorRef.current) cursorRef.current.style.opacity = "0";
       if (followerRef.current) followerRef.current.style.opacity = "0";
     };
 
     const onMove = (e: MouseEvent) => {
       show();
-
-      if (wrapperElement) {
-        const rect = wrapperElement.getBoundingClientRect();
-        pos.current.x = e.clientX;
-        pos.current.y = e.clientY;
-
-        // still track global coords because cursor is fixed on body,
-        // but we only show when inside wrapper via enter/leave handlers.
-        // (so no coordinate remap needed)
-        if (!hasInitPosRef.current) {
-          hasInitPosRef.current = true;
-          cur.current.x = e.clientX;
-          cur.current.y = e.clientY;
-          follower.current.x = e.clientX;
-          follower.current.y = e.clientY;
-        }
-        return;
-      }
 
       pos.current.x = e.clientX;
       pos.current.y = e.clientY;
@@ -102,13 +86,15 @@ export default function CustomCursor({ wrapperElement }: CustomCursorProps) {
 
       const explicit = target.closest("[data-cursor]") as HTMLElement | null;
       if (explicit) {
-        const v = explicit.getAttribute("data-cursor") || "default";
-        cursorRef.current.setAttribute("data-variant", v);
+        const variant = explicit.getAttribute("data-cursor") || "default";
+        cursorRef.current.setAttribute("data-variant", variant);
         return;
       }
 
       if (
-        target.closest("a, button, input, textarea, select, label, [role='button']")
+        target.closest(
+          "a, button, input, textarea, select, label, [role='button']"
+        )
       ) {
         cursorRef.current.setAttribute("data-variant", "hover");
         return;
@@ -117,22 +103,14 @@ export default function CustomCursor({ wrapperElement }: CustomCursorProps) {
       cursorRef.current.setAttribute("data-variant", "default");
     };
 
-    const onEnter = () => {
-      // show only when inside the website container
-      show();
-    };
-
-    const onLeave = () => {
-      // hide when leaving the website container
-      hide();
-    };
-
+    const onEnterWindow = () => show();
+    const onLeaveWindow = () => hide();
     const onBlur = () => hide();
 
-    scope.addEventListener("mouseenter", onEnter);
-    scope.addEventListener("mouseleave", onLeave);
     scope.addEventListener("mousemove", onMove);
     scope.addEventListener("mouseover", onOver, true);
+    document.addEventListener("mouseenter", onEnterWindow);
+    document.addEventListener("mouseleave", onLeaveWindow);
     window.addEventListener("blur", onBlur);
 
     const followEase = 0.12;
@@ -147,6 +125,7 @@ export default function CustomCursor({ wrapperElement }: CustomCursorProps) {
       if (cursorRef.current && isVisibleRef.current) {
         cursorRef.current.style.transform = `translate3d(${cur.current.x}px, ${cur.current.y}px, 0) translate(-50%, -50%)`;
       }
+
       if (followerRef.current && isVisibleRef.current) {
         followerRef.current.style.transform = `translate3d(${follower.current.x}px, ${follower.current.y}px, 0) translate(-50%, -50%)`;
       }
@@ -159,16 +138,17 @@ export default function CustomCursor({ wrapperElement }: CustomCursorProps) {
     return () => {
       if (rafRef.current) cancelAnimationFrame(rafRef.current);
 
-      scope.removeEventListener("mouseenter", onEnter);
-      scope.removeEventListener("mouseleave", onLeave);
       scope.removeEventListener("mousemove", onMove);
       scope.removeEventListener("mouseover", onOver, true);
+      document.removeEventListener("mouseenter", onEnterWindow);
+      document.removeEventListener("mouseleave", onLeaveWindow);
       window.removeEventListener("blur", onBlur);
 
       if (cursorRef.current) {
         cursorRef.current.remove();
         cursorRef.current = null;
       }
+
       if (followerRef.current) {
         followerRef.current.remove();
         followerRef.current = null;
@@ -176,7 +156,7 @@ export default function CustomCursor({ wrapperElement }: CustomCursorProps) {
 
       document.documentElement.classList.remove("has-custom-cursor");
     };
-  }, [wrapperElement]);
+  }, []);
 
   return null;
 }
